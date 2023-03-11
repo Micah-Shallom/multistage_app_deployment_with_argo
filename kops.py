@@ -35,12 +35,12 @@ for env in env_list:
     export_command = f"export KOPS_STATE_STORE=s3://{s3_bucket}"
     
     # Create a new cluster configuration
-    create_command = f"kops create cluster --node-count 2 --vpc {vpc_id} --node-size t2.medium --master-size t2.medium --zones {region}a,{region}b --name {name} --dns-zone {hosted_zone_id} --yes --cloud aws"
-    subprocess.run(f"{export_command} && {create_command}", shell=True)
+    # create_command = f"kops create cluster --node-count 2 --vpc {vpc_id} --node-size t2.medium --master-size t2.medium --zones {region}a,{region}b --name {name} --dns-zone {hosted_zone_id} --yes --cloud aws"
+    # subprocess.run(f"{export_command} && {create_command}", shell=True)
     
-    # Update the cluster configuration
-    update_command = f"kops update cluster {name} --yes"
-    subprocess.run(f"{export_command} && {update_command}", shell=True)
+    # # Update the cluster configuration
+    # update_command = f"kops update cluster {name} --yes"
+    # subprocess.run(f"{export_command} && {update_command}", shell=True)
     
     # Wait for the cluster to be ready
     # time.sleep(600)
@@ -54,3 +54,8 @@ for env in env_list:
     # # Export kubectl configuration
     export_command = f"kops export kubecfg --state s3://{s3_bucket}"
     subprocess.run(f"{export_command}", shell=True)
+
+
+#toDo purchase 3 domains from AWS
+# study how to use customize 
+#understand how to promote deployments into higher environments with argocd
