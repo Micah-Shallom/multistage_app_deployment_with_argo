@@ -8,20 +8,20 @@ env_list = [
         "s3_bucket": "gpt-k8s-store-development",
         "vpc_id": "vpc-0df0e0a686549ddba"
     },
-    # {
-    #     "env_name": "prod",
-    #     "domain_name": "elliottlamararnold.com",
-    #     "hosted_zone_id": "Z03476993IN1YTE6MVIVQ",
-    #     "s3_bucket": "gpt-k8s-store-prod",
-    #     "vpc_id": "vpc-0f788f7799b50d635"
-    # },
-    # {
-    #     "env_name": "stg",
-    #     "domain_name": "elliottlamararnold.com",
-    #     "hosted_zone_id": "Z03476993IN1YTE6MVIVQ",
-    #     "s3_bucket": "gpt-k8s-store-staging",
-    #     "vpc_id": "vpc-0c1bfc0a7ccfed14c"
-    # }
+    {
+        "env_name": "prod",
+        "domain_name": "lamararnold.com",
+        "hosted_zone_id": "Z0313571W53DLDVW41Y0",
+        "s3_bucket": "gpt-k8s-store-prod",
+        "vpc_id": "vpc-0f788f7799b50d635"
+    },
+    {
+        "env_name": "stg",
+        "domain_name": "elliottarnold.com",
+        "hosted_zone_id": "Z017710613GRK87AKD5E6",
+        "s3_bucket": "gpt-k8s-store-staging",
+        "vpc_id": "vpc-0c1bfc0a7ccfed14c"
+    }
 ]
 
 
