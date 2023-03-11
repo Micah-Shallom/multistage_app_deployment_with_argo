@@ -34,20 +34,20 @@ for env in env_list:
     hosted_zone_id = env["hosted_zone_id"]
     export_command = f"export KOPS_STATE_STORE=s3://{s3_bucket}"
     
-    # Create a new cluster configuration
-    # create_command = f"kops create cluster --node-count 2 --vpc {vpc_id} --node-size t2.medium --master-size t2.medium --zones {region}a,{region}b --name {name} --dns-zone {hosted_zone_id} --yes --cloud aws"
-    # subprocess.run(f"{export_command} && {create_command}", shell=True)
+    #Create a new cluster configuration
+    create_command = f"kops create cluster --node-count 2 --vpc {vpc_id} --node-size t2.medium --master-size t2.medium --zones {region}a,{region}b --name {name} --dns-zone {hosted_zone_id} --yes --cloud aws"
+    subprocess.run(f"{export_command} && {create_command}", shell=True)
     
-    # # Update the cluster configuration
-    # update_command = f"kops update cluster {name} --yes"
-    # subprocess.run(f"{export_command} && {update_command}", shell=True)
+    # Update the cluster configuration
+    update_command = f"kops update cluster {name} --yes"
+    subprocess.run(f"{export_command} && {update_command}", shell=True)
     
     # Wait for the cluster to be ready
     # time.sleep(600)
     validate_command = f"kops validate cluster {name} --wait 10m"
     subprocess.run(f"{export_command} && {validate_command}", shell=True)
         # Wait for the cluster to be ready
-    time.sleep(600)
+    # time.sleep(600)
     
     
     
