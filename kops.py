@@ -1,4 +1,4 @@
-import subprocess, time
+import subprocess,time
 
 env_list = [
     {
@@ -24,7 +24,7 @@ env_list = [
     }
 ]
 
-export_command = "export KOPS_STATE_STORE=s3://gpt-k8s-store"
+
 
 for env in env_list:
     name = env["domain_name"]
@@ -32,20 +32,20 @@ for env in env_list:
     s3_bucket = env["s3_bucket"]
     vpc_id = env["vpc_id"]
     hosted_zone_id = env["hosted_zone_id"]
+    export_command = f"export KOPS_STATE_STORE=s3://{s3_bucket}"
     
     # Create a new cluster configuration
     create_command = f"kops create cluster --node-count 2 --node-size t2.medium --master-size t2.medium --zones {region}a,{region}b --name {name} --dns-zone {hosted_zone_id} --yes --cloud aws"
-    subprocess.run(f"{create_command}", shell=True)
+    subprocess.run(f"{export_command} && {create_command}", shell=True)
     
     # Update the cluster configuration
     update_command = f"kops update cluster {name} --yes"
-    subprocess.run(f"{update_command}", shell=True)
+    subprocess.run(f"{export_command} && {update_command}", shell=True)
     
     # Wait for the cluster to be ready
     time.sleep(600)
     validate_command = "kops validate cluster --wait 10m"
-    subprocess.run(f"{validate_command}", shell=True)
-
+    subprocess.run(f"{export_command} && {validate_command}", shell=True)
     
     
     # Export kubectl configuration
